@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../constants/app_colors.dart';
@@ -7,13 +9,47 @@ import '../constants/app_text_styles.dart';
 import '../constants/app_texts.dart';
 import '../core/router/go.dart';
 import '../core/router/pager.dart';
+import '../widgets/all_gender_widget.dart';
 import '../widgets/calculate_button.dart';
 import '../widgets/counter_box.dart';
-import '../widgets/gender_box.dart';
 import '../widgets/height_box.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  double height = 174;
+  int weight = 70;
+  int age = 25;
+
+  void _onHeightSlide(double v) {
+    height = v;
+    setState(() {});
+  }
+
+  void _onWeightPlus() {
+    weight++;
+    setState(() {});
+  }
+
+  void _onWeightMinus() {
+    weight--;
+    setState(() {});
+  }
+
+  void _onAgePlus() {
+    age++;
+    setState(() {});
+  }
+
+  void _onAgeMinus() {
+    age--;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,42 +66,37 @@ class MainPage extends StatelessWidget {
           padding: AppPaddings.h16,
           child: Column(
             children: [
-              const Row(
-                children: [
-                  Expanded(
-                    child: GenderBox(icon: Icons.male, text: AppTexts.male),
-                  ),
-                  AppSizedboxes.w16,
-                  Expanded(
-                    child: GenderBox(icon: Icons.female, text: AppTexts.female),
-                  ),
-                ],
-              ),
+              const AllGenderWidget(),
               AppSizedboxes.h20,
-              const HeightBox(),
+              HeightBox(height: height, onSlide: _onHeightSlide),
               AppSizedboxes.h20,
               Row(
                 children: [
                   Expanded(
                     child: CounterBox.weight(
-                      value: '70',
-                      onPlus: () {},
-                      onMinus: () {},
+                      value: weight,
+                      onPlus: _onWeightPlus,
+                      onMinus: _onWeightMinus,
                     ),
                   ),
                   AppSizedboxes.w16,
                   Expanded(
                     child: CounterBox.age(
-                      value: '26',
-                      onPlus: () {},
-                      onMinus: () {},
+                      value: age,
+                      onPlus: _onAgePlus,
+                      onMinus: _onAgeMinus,
                     ),
                   ),
                 ],
               ),
               const Spacer(),
               CalculateButton.calculate(
-                onTap: () => Go.to(context, Pager.result),
+                onTap: () {
+                  height = height / 100;
+                  double result = weight / (height * height);
+                  log('Result is $result');
+                  // Go.to(context, Pager.result);
+                },
               ),
             ],
           ),

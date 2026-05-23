@@ -1,26 +1,34 @@
-import 'package:bmi_calculator_app/constants/app_colors.dart';
-import 'package:bmi_calculator_app/constants/app_paddings.dart';
-import 'package:bmi_calculator_app/constants/app_sizedboxes.dart';
-import 'package:bmi_calculator_app/constants/app_text_styles.dart';
-import 'package:bmi_calculator_app/widgets/app_box.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/app_colors.dart';
+import '../constants/app_paddings.dart';
+import '../constants/app_sizedboxes.dart';
+import '../constants/app_text_styles.dart';
+import '../core/enums/gender.dart';
+import 'app_box.dart';
+
 class GenderBox extends StatelessWidget {
-  const GenderBox({super.key, required this.icon, required this.text});
-  final IconData icon;
-  final String text;
+  const GenderBox({
+    super.key,
+    required this.backgroundColor,
+    required this.gender,
+  });
+
+  final Gender gender;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return AppBox(
+      backgroundColor: backgroundColor,
       child: Padding(
         padding: AppPaddings.a16,
         child: Center(
           child: Column(
             children: [
-              Icon(icon, color: AppColors.white, size: 90),
+              Icon(gender.icon, color: AppColors.white, size: 90),
               AppSizedboxes.h8,
-              Text(text, style: AppTextStyles.genderTitleStyle),
+              Text(gender.text, style: AppTextStyles.genderTitleStyle),
             ],
           ),
         ),

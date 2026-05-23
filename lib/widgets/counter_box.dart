@@ -25,7 +25,7 @@ class CounterBox extends StatelessWidget {
   });
 
   final String label;
-  final String value;
+  final int value;
   final void Function() onPlus;
   final void Function() onMinus;
 
@@ -39,7 +39,7 @@ class CounterBox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             LabelText(labelText: label),
-            ValueText(number: value),
+            ValueText(number: '$value'),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
