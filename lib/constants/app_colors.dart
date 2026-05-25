@@ -9,4 +9,5 @@ class AppColors {
   static const white = Color(0xffffffff);
   static const primary = Color(0xffEB1655);
   static const circleButtonColor = Color(0xff4C4F5E);
+  static const resultLabelTextColor = Color(0xFF39FC17);
 }

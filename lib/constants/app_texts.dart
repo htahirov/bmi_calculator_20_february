@@ -9,4 +9,5 @@ class AppTexts {
   static const height = 'Height';
   static const calculate = 'Calculate';
   static const reCalculate = 'Re-Calculate';
+  static const String resultText = 'Your Result';
 }

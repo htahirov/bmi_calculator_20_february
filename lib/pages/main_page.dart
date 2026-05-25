@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -92,10 +92,8 @@ class _MainPageState extends State<MainPage> {
               const Spacer(),
               CalculateButton.calculate(
                 onTap: () {
-                  height = height / 100;
-                  double result = weight / (height * height);
-                  log('Result is $result');
-                  // Go.to(context, Pager.result);
+                  double result = weight / pow(height / 100, 2);
+                  Go.to(context, Pager.result(result));
                 },
               ),
             ],

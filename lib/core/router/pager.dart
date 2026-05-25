@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../pages/main_page.dart';
 import '../../pages/result_page.dart';
 
@@ -6,5 +8,5 @@ class Pager {
 
   static const main = MainPage();
 
-  static const result = ResultPage();
+  static Widget result(double result) => ResultPage(result: result);
 }
